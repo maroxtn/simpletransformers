@@ -744,7 +744,7 @@ class T5Model:
             )
 
             if callback_fn != None:
-                callback_fn(model, test_datasets)
+                callback_fn(self, test_datasets)
 
             if args.save_model_every_epoch or args.evaluate_during_training:
                 os.makedirs(output_dir_current, exist_ok=True)

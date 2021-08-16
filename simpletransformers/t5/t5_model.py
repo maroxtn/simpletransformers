@@ -248,6 +248,8 @@ class T5Model:
         show_running_loss=True,
         eval_data=None,
         verbose=True,
+        callback_fn=None,
+        test_datasets=None,
         **kwargs,
     ):
         """
@@ -740,6 +742,9 @@ class T5Model:
             output_dir_current = os.path.join(
                 output_dir, "checkpoint-{}-epoch-{}".format(global_step, epoch_number)
             )
+
+            if callback_fn != None:
+                callback_fn(model, test_datasets)
 
             if args.save_model_every_epoch or args.evaluate_during_training:
                 os.makedirs(output_dir_current, exist_ok=True)
